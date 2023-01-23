@@ -1,9 +1,9 @@
 import React from "react";
-import LogInPage from './src/pages/LogIn';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import theme from "./src/theme";
+import LogInPage from './src/pages/LogIn';
 import HomePage from "./src/pages/Home";
 
 
