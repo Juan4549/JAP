@@ -1,10 +1,12 @@
 import React from "react";
-import { Text, View } from "react-native"
+import { View,Text } from "react-native";
 
-export default function HomePage(){
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details Screen</Text>
+const HomePage=()=>{
+    return(
+        <View>
+            <Text>Home</Text>
         </View>
-    );
-}
+    )
+};
+
+export default HomePage

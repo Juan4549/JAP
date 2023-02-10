@@ -13,8 +13,8 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="LogIn" component={LogInPage} />
-          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="LogInPage" component={LogInPage} />
+          <Stack.Screen name="HomePage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

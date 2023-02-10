@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Button, Text, TextInput, HelperText } from "react-native-paper";
 import { validateEmail } from "../helpers/ValidationForms";
 
+
 export default function LogInPage() {
     var [TIemail, setTIemail] = React.useState('');
     var [TIpassword, setTIpassword] = React.useState('');

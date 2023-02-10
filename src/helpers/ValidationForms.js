@@ -1,3 +1,4 @@
+
 export const validateEmail = (email) => {
     if (email === '') {
         return 'El email es requerido'
