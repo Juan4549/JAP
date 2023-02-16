@@ -5,9 +5,13 @@ import { validateEmail } from "../helpers/ValidationForms";
 
 
 export default function LogInPage() {
-    var [TIemail, setTIemail] = React.useState('');
-    var [TIpassword, setTIpassword] = React.useState('');
-
+    var [dataUser, setDataUser] = React.useState({
+        email: '',
+        password: '',
+    });
+    const handleChangeText = (name, value) => {
+        setDataUser({ ...dataUser, [name]: value })
+    }
     return (
         <View>
             <Text
@@ -22,19 +26,19 @@ export default function LogInPage() {
             </Text>
             <TextInput
                 label="Correo electrónica"
-                value={TIemail}
-                onChangeText={TIemail =>setTIemail(TIemail)}
+                value={dataUser.email}
+                onChangeText={handleChangeText('email',dataUser.email)}
             />
             <HelperText
                 type="error"
-                visible={validateEmail(TIemail)}
+                visible={validateEmail(dataUser.email)}
             >
-                {validateEmail(TIemail)}
+                {validateEmail(dataUser.email)}
             </HelperText>
             <TextInput
                 label="Contraseña"
-                value={TIpassword}
-                onChangeText={TIpassword =>setTIpassword(TIpassword)}
+                value={dataUser.password}
+                onChangeText={handleChangeText('password', dataUser.password )}
             />
             <HelperText
                 type="error"
