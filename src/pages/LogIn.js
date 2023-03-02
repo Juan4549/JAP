@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ImageBackground, ScrollView, View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { Button, Text, TextInput, HelperText } from "react-native-paper";
-import { Wrap, VStack, Box, Divider } from "@react-native-material/core";
 import background from "../../assets/backLogin.jpg"
+import { AuthContext } from "../context/auth";
 import { useLogin } from "../hooks/useLogin";
 import { styles } from "../styles";
 
@@ -17,73 +17,80 @@ export default function LogInPage(props) {
         email: '',
         password: '',
     });
+
+    const [u, setU] = React.useContext(AuthContext);
+    const [statePassword, setStatePassword] = React.useState(true);
     return (
+        <ImageBackground
+            source={background}
+            resizeMode="cover"
+            style={styles.imageback} >
+
             <View style={styles.container}>
-                <ImageBackground source={background} resizeMode={'cover'} style={styles.image}>
-                    {/* Nombre logo */}
-                    <Box>
-                        <Text
-                            variant="displayLarge"
-                        >Jap
-                        </Text>
-                    </Box>
-                    {/* Inicio Sesion */}
-                    <Box >
-                        <Text
-                            variant="displaySmall"
-                        >Inicia sesión
-                        </Text>
-                    </Box>
-                    {/* TextInput email */}
-                    <Box >
-                        <TextInput
-                            label="Correo electrónica"
-                            value={form.email}
-                            onChange={(e) => handleChange(e, 'email')}
-                        />
-                        <HelperText
-                            type="error"
-                            visible={errorsForm.email && true}
-                        >
-                            {errorsForm.email}
-                        </HelperText>
-                    </Box>
-                    {/* TextInput password */}
-                    <Box>
-                        <TextInput
-                            label="Contraseña"
-                            value={form.password}
-                            secureTextEntry={true}
-                            onChange={(e) => handleChange(e, 'password')}
-                        />
-                        <HelperText
-                            type="error"
-                            visible={errorsForm.password && true}
-                        >
-                            {errorsForm.password}
-                        </HelperText>
-                    </Box>
-                    {/* Btn Login */}
-                    <Box >
-                        <Button
-                            icon="login"
-                            mode="contained"
-                            loading={loading}
-                            disabled={Object.keys(errorsForm).length !== 0}
-                            onPress={() => handleSubmit(props)}>
-                            Ingresar
-                        </Button>
-                    </Box>
-                    {/* Btn Register */}
-                    <Box >
-                        <Button
-                            icon="login"
-                            mode="text"
-                            onPress={() => props.navigation.navigate('Registro')}>
-                            Eres nuev@? Registrate
-                        </Button>
-                    </Box>
-                </ImageBackground>
-            </View >
+                {/* Nombre logo */}
+                <Text
+                    style={styles.text}
+                >JAP
+                </Text>
+                {/* TextInput email */}
+                <TextInput
+                    style={styles.textInput}
+                    label="Correo electrónica"
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    textContentType="emailAddress"
+                    autoFocus={true}
+                    value={form.email}
+                    onChange={(e) => handleChange(e, 'email')}
+                />
+                <HelperText
+                    style={styles.helpersText}
+                    type="error"
+                    visible={errorsForm.email && true}
+                >
+                    {errorsForm.email}
+                </HelperText>
+                {/* TextInput password */}
+                <TextInput
+                    style={styles.textInput}
+                    label="Contraseña"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    textContentType="password"
+                    value={form.password}
+                    right={<TextInput.Icon icon={statePassword ? "eye" : "eye-off"}
+                        onPress={() => setStatePassword(!statePassword)} />}
+                    secureTextEntry={statePassword}
+                    onChange={(e) => handleChange(e, 'password')}
+                />
+                <HelperText
+                    style={styles.helpersText}
+                    type="error"
+                    visible={errorsForm.password && true}
+                >
+                    {errorsForm.password}
+                </HelperText>
+                {/* Btn Login */}
+                <Button
+                    style={styles.button}
+                    icon="login"
+                    mode="contained"
+                    loading={loading}
+                    disabled={Object.keys(errorsForm).length !== 0 || loading}
+                    onPress={() => {
+                        handleSubmit(props)
+                    }}>
+                    Ingresar
+                </Button>
+                {/* Btn Register */}
+                <Button
+                    style={styles.button}
+                    icon="account-plus"
+                    mode="text"
+                    onPress={() => props.navigation.navigate('Registro')}>
+                    Eres nuev@? Registrate
+                </Button>
+            </View>
+        </ImageBackground>
     )
 }

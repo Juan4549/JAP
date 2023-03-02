@@ -1,22 +1,24 @@
 import { useState } from "react";
 
-import { validationsLogin } from "../helpers/ValidationForms";
+import { validationsForm } from "../helpers/ValidationForms";
 
 export const useForm = (data) => {
     const [form, setForm] = useState(data);
     const [errorsForm, setErrorsFrom] = useState({});
     const [stateChip, setStateChip] = useState({
-        Anime: false, Manga: false
+        Anime: false,
+        Manga: false,
+        BokuNoPiko:false,
+        h:false,
+        OnePice:false
     });
-    const [preferences, upPreferences] = useState([]);
-    var listpref=[]
 
     const handleChange = (e, name) => {
         setForm({
             ...form,
             [name]: e.nativeEvent.text,
         })
-        setErrorsFrom(validationsLogin(form))
+        setErrorsFrom(validationsForm(form))
     }
     const setPreferences = (value) => {
         if (!stateChip[value]) {

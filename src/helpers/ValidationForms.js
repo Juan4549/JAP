@@ -11,31 +11,38 @@ export const validateEmail = (email) => {
 
 export function validationsForm(form) {
     let errors = {};
-    if (!RegExp(/^[A-Za-zñÑ]+((\s)?(('|-|\.)?([A-Za-zñÑ])+))*$/).exec(form.names)) {
-        errors.names = 'El nombre es incorrecto'
+    /* Email */
+    if (!RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).exec(form.email)) {
+        errors.email = 'El email no es correcto'
     }
-    if (form.names === '') {
-        errors.names = 'El nombre es requerido'
+    if (form.email === '') {
+        errors.email = 'El email es requerido'
     }
-    if (!RegExp(/^[A-Za-zñÑ]+((\s)?(('|-|\.)?([A-Za-zñÑ])+))*$/).exec(form.names)) {
-        errors.names = 'El nombre es incorrecto'
-    }
-    if (form.names === '') {
-        errors.names = 'El nombre es requerido'
-    }
-    const invalidEmail = validateEmail(form.email);
-    if (!!invalidEmail)
-        errors.email = invalidEmail;
-
-    return errors
-}
-export function validationsLogin(form) {
-    let errors = {};
-    const invalidEmail = validateEmail(form.email);
-    if (!!invalidEmail)
-        errors.email = invalidEmail;
+    /* Contraseña */
     if (form.password === '') {
         errors.password = 'La contraseña es requerida'
+    }
+    /* Nombre */
+    if (!RegExp(/^[A-Za-zñÑ]+((\s)?(('|-|\.)?([A-Za-zñÑ])+))*$/).exec(form.names)) {
+        errors.names = 'El nombre es incorrecto'
+    }
+    if (form.names === '') {
+        errors.names = 'El nombre es requerido'
+    }
+    /* Apellidos */
+    if (!RegExp(/^[A-Za-zñÑ]+((\s)?(('|-|\.)?([A-Za-zñÑ])+))*$/).exec(form.surnames)) {
+        errors.surnames = 'El apellido es incorrecto'
+    }
+    if (form.surnames === '') {
+        errors.surnames = 'El apellido es requerido'
+    }
+    /* Descripcion */
+    if (form.description === '') {
+        errors.description = 'Escriba una descripción'
+    }
+    /* Edad */
+    if (form.age === '') {
+        errors.age = 'Ingrese su edad'
     }
     return errors
 }
