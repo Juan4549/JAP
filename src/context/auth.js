@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
         user: null,
         auth: null,
         matchs:[],
+        chats:[],
     });
 
     return (

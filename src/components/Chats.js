@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
+import { View, StyleSheet, Image } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import { AuthContext } from "../context/auth";
+import firebase from "../database/firebase";
+import { useMatch } from "../hooks/useMatch";
 
 const ChatsComponent = ({ route }) => {
     const [u, setU] = useContext(AuthContext)
-    const List = u.matchs.map(element =>
+    const { getMatch, setMatch,getChats } = useMatch();
+    const List = u.user?.chats?.map(element =>
         < Card key={element.uid}>
+            {console.log(u.chats)}
             <Card.Title
                 titleStyle={styles.textTitulo}
                 title={element.names + ' ' + element.surnames}
@@ -20,7 +25,7 @@ const ChatsComponent = ({ route }) => {
                 right={() => <IconButton icon="send" onPress={() => {
                     console.log('Abre Char'),
                         route.props.navigation.push('Chat', {
-                            itemId: Math.floor(Math.random() * 100),
+                            chatUid:element.chatUid
                         })
                 }} />}
             />
@@ -29,6 +34,7 @@ const ChatsComponent = ({ route }) => {
     return (
         <View
             style={styles.conteiner}>
+                {console.log(u.user.chats)}
             {List}
         </View>
     )
@@ -64,6 +70,7 @@ export const styles = StyleSheet.create({
     avatar: {
         width: 45,
         height: 45,
+        borderRadius: 45,
     }
 })
 export default ChatsComponent

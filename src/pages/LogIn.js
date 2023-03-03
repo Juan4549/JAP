@@ -87,8 +87,8 @@ export default function LogInPage(props) {
                     style={styles.button}
                     icon="account-plus"
                     mode="text"
-                    onPress={() => props.navigation.navigate('Registro')}>
-                    Eres nuev@? Registrate
+                    onPress={() => props.navigation.navigate('Registro')}
+                >Eres nuev@? Registrate
                 </Button>
             </View>
         </ImageBackground>

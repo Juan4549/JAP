@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import firebase from "../database/firebase";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { validationsForm } from "../helpers/ValidationForms";
 import { useForm } from "./useForm";
 import * as ImagePicker from 'expo-image-picker';
@@ -26,6 +26,8 @@ export const useRegister = (data) => {
     const selectImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             base64: true,
+            allowsEditing: true,
+            aspect: [3, 3],
         });
 
         if (!result.canceled) {
@@ -36,14 +38,13 @@ export const useRegister = (data) => {
         }
     }
     const handleSubmit = async (props) => {
-        e.preventDefault();
         setErrorsFrom(validationsForm(form));
 
 
         if (Object.keys(errorsForm).length === 0) {
             setLoading(true);
             var user = "";
-            var urlFoto="";
+            var urlFoto = "";
             try {
                 await createUserWithEmailAndPassword(auth, form.email, form.password)
                     .then((userCredential) => {
@@ -53,18 +54,34 @@ export const useRegister = (data) => {
                     .catch((error) => {
                         console.log(error)
                     });
-                const storageRef = ref(firebase.storage, 'FotoPerfil/' +user.uid)
+                const blob = await new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                        resolve(xhr.response);
+                    };
+                    xhr.onerror = function (e) {
+                        console.log(e);
+                        reject(new TypeError("Network request failed"));
+                    };
+                    xhr.responseType = "blob";
+                    xhr.open("GET", foto.uri, true);
+                    xhr.send(null);
+                });
+                const storageRef = ref(firebase.storage, 'FotoPerfil/' + user.uid)
                 console.log(foto)
-                await uploadString(storageRef, foto.uri,'data_url').then((snapshot) => {
+                const metadata = {
+                    contentType: 'image/jpeg',
+                };
+                await uploadBytes(storageRef, blob, metadata).then((snapshot) => {
                     console.log('Uploaded a blob or file!');
                     console.log(snapshot)
                 });
-                const fotoRef=ref(firebase.storage, 'FotoPerfil/' +user.uid)
+                const fotoRef = ref(firebase.storage, 'FotoPerfil/' + user.uid)
                 await getDownloadURL(storageRef)
-                .then((url) => {
-                    urlFoto=url;
-                })
-                await addDoc(collection(firebase.db, 'Perfiles'), {
+                    .then((url) => {
+                        urlFoto = url;
+                    })
+                await setDoc(doc(firebase.db, 'Perfiles', user.uid), {
                     preferences: stateChip,
                     genero: form.genero ? "Mujer" : "Hombre",
                     names: form.names,
@@ -72,7 +89,8 @@ export const useRegister = (data) => {
                     age: form.age,
                     description: form.description,
                     urlFoto: urlFoto,
-                    uid: user.uid
+                    uid: user.uid,
+                    chats:[]
                 })
                     .then(() => {
                         console.log("Datos guardados!");
@@ -81,7 +99,7 @@ export const useRegister = (data) => {
                     .catch((error) => {
                         console.log(error)
                     });
-                    props.navigation.goBack()
+                props.navigation.goBack()
             } catch (error) {
                 console.log(error)
             }

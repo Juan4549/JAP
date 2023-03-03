@@ -7,24 +7,15 @@ import firebase from "../database/firebase";
 
 const Perfil = ({ route }) => {
     const [u, setU] = useContext(AuthContext)
-    const [carga, setCarga] = useState(false)
     return (
         <View
             style={styles.conteiner}>
-            {!carga ?
-                <Image
-                    style={styles.avatar}
-                    source={{
-                        uri: u.user?.urlFoto,
-                    }}
-                    onLoadStart={() => setCarga({ loading: true })}
-                    onLoadEnd={() => setCarga({ loading: false })}
-                /> :
-                <ActivityIndicator
-                    style={styles.avatar}
-                    animating={true}
-                    size={45} />
-            }
+            <Image
+                style={styles.avatar}
+                source={{
+                    uri: u.user.urlFoto,
+                }}
+            />
             <Text>Hola {u.user?.names + ' ' + u.user?.surnames}</Text>
             <Text>Tus intereses:</Text>
             <View
@@ -72,12 +63,18 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         flexWrap: "wrap",
     },
+    text:{
+
+    },
     chip: {
         margin: 3,
         marginTop: 5,
     },
     avatar: {
-        marginBottom: 25,
+        width: 250,
+        height: 250,
+        borderRadius:45,
+        marginBottom:50
     }
 })
 export default Perfil
