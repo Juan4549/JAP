@@ -32,11 +32,19 @@ export const styles = StyleSheet.create({
         width:150,
         borderRadius:100,
     },
-    text: {
-        color: 'black',
-        fontSize: 25,
-        lineHeight: 84,
+    textLogin: {
+        color: '#746',
+        fontFamily: 'fantasy',
+        fontSize: 40,
+        lineHeight: 80,
         fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    text: {
+        color: '#746AA9',
+        fontFamily: 'fantasy',
+        fontSize: 20,
+        lineHeight: 84,
         textAlign: 'center',
     },
     textInput: {

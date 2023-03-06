@@ -29,8 +29,12 @@ export default function LogInPage(props) {
             <View style={styles.container}>
                 {/* Nombre logo */}
                 <Text
-                    style={styles.text}
+                    style={styles.textLogin}
                 >JAP
+                </Text>
+                <Text
+                    style={styles.text}
+                >Navega, chatea y conoce 💑
                 </Text>
                 {/* TextInput email */}
                 <TextInput
@@ -85,7 +89,7 @@ export default function LogInPage(props) {
                 {/* Btn Register */}
                 <Button
                     style={styles.button}
-                    icon="account-plus"
+                    //icon="account-plus"
                     mode="text"
                     onPress={() => props.navigation.navigate('Registro')}
                 >Eres nuev@? Registrate
