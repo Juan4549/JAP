@@ -9,7 +9,7 @@ import { useMatch } from "../hooks/useMatch";
 const HomePage = (props) => {
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
-        { key: 'matchs', title: 'Intereses', focusedIcon: 'heart', unfocusedIcon: 'heart-outline' },
+        { key: 'matchs', title: 'Intereses', focusedIcon: 'heart', unfocusedIcon: 'heart-outline',props: props },
         { key: 'chats', title: 'Conversaciones', focusedIcon: 'chat', props: props },
         { key: 'perfil', title: 'Perfil', focusedIcon: 'account', props: props },
     ]);

@@ -1,16 +1,13 @@
-import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useContext } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Card, Chip, Divider, Text } from "react-native-paper";
-import { ScrollView } from "react-native-web";
 import { AuthContext } from "../context/auth";
 import firebase from "../database/firebase";
 import { useMatch } from "../hooks/useMatch";
 
 const MatchComponent = ({ route }) => {
     const [u, setU] = useContext(AuthContext)
-    const [contar, setContar] = useState(0)
-    const { getMatch, setMatch, getChats, getNotMatch,updateMatch } = useMatch();
+    const { getMatch, setMatch, getChats, getNotMatch, updateMatch } = useMatch();
     const List = u.matchs?.map(element =>
         <View
             style={styles.conteinerCardStyle}
@@ -53,13 +50,13 @@ const MatchComponent = ({ route }) => {
                         onPress={() => {
                             getNotMatch(element)
                             updateMatch(u.user)
-                            setContar(contar + 1)
+                            route.props.navigation.navigate('Conoce a tu alma gemela 😉')
                         }}>No, Gracias 👎</Button>
                     <Button
                         onPress={() => {
                             setMatch(element)
                             getChats()
-                            setContar(contar - 1)
+                            route.props.navigation.navigate('Chats')
                         }}
                     >Me Gusta ❤</Button>
                 </Card.Actions>
@@ -71,8 +68,15 @@ const MatchComponent = ({ route }) => {
             style={styles.conteiner}>
             {console.log(u.matchs)}
             <ScrollView>
-
-                {List}
+                {console.log(List.length)}
+                {List.length === 0 ?
+                    <View
+                        style={styles.conteiner}>
+                        <Text
+                            style={styles.textTitulo}>Eso es todo por hoy 😈</Text>
+                    </View>
+                    :
+                    List}
             </ScrollView>
         </View>
     )
@@ -81,6 +85,7 @@ export const styles = StyleSheet.create({
     conteiner: {
         flex: 1,
         margin: 15,
+        alignItems: 'center',
     },
     conteinerCard: {
         marginBottom: 15,
