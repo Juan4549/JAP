@@ -14,11 +14,11 @@ const ChatsComponent = ({ route }) => {
             {console.log(u.chats)}
             <Card.Title
                 titleStyle={styles.textTitulo}
-                title={element.names + ' ' + element.surnames}
+                title={element.nombres + ' ' + element.apellidos}
                 left={() => <Image
                     style={styles.avatar}
                     source={{
-                        uri: element.urlFoto,
+                        uri: element.foto,
                     }}
                 />
                 }

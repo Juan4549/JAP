@@ -13,16 +13,16 @@ const Perfil = ({ route }) => {
             <Image
                 style={styles.avatar}
                 source={{
-                    uri: u.user.urlFoto,
+                    uri: u.user.foto,
                 }}
             />
-            <Text>Hola {u.user?.names + ' ' + u.user?.surnames}</Text>
+            <Text>Hola {u.user?.nombres + ' ' + u.user?.apellidos}</Text>
             <Text>Tus intereses:</Text>
             <View
                 style={styles.containerChip}>
                 {
-                    Object.keys(u.user?.preferences).map(e => {
-                        if (u.user.preferences[e] === true) {
+                    Object.keys(u.user?.intereses).map(e => {
+                        if (u.user.intereses[e] === true) {
                             return <Chip key={e} style={styles.chip}>{e}</Chip>
                         }
                     }

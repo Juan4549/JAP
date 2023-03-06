@@ -82,13 +82,13 @@ export const useRegister = (data) => {
                         urlFoto = url;
                     })
                 await setDoc(doc(firebase.db, 'Perfiles', user.uid), {
-                    preferences: stateChip,
+                    intereses: stateChip,
                     genero: form.genero ? "Mujer" : "Hombre",
-                    names: form.names,
-                    surnames: form.surnames,
-                    age: form.age,
-                    description: form.description,
-                    urlFoto: urlFoto,
+                    nombres: form.names,
+                    apellidos: form.surnames,
+                    edad: form.age,
+                    descripcion: form.description,
+                    foto: urlFoto,
                     uid: user.uid,
                     chats:[],
                     notLike:[],

@@ -16,14 +16,14 @@ const MatchComponent = ({ route }) => {
                 <Card.Title
                     titleStyle={styles.textTitulo}
                     subtitleStyle={styles.textSubTitulo}
-                    title={element.names + ' ' + element.surnames}
-                    subtitle={'Edad: ' + element.age} />
+                    title={element.nombres + ' ' + element.apellidos}
+                    subtitle={'Edad: ' + element.edad} />
                 <Card.Cover
-                    source={{ uri: element.urlFoto }} />
+                    source={{ uri: element.foto }} />
                 <Card.Content>
                     <Text
                         style={styles.textDescip}
-                    >{element.description}</Text>
+                    >{element.descripcion}</Text>
                     <Divider
                         style={styles.divider}
                     />
@@ -33,8 +33,8 @@ const MatchComponent = ({ route }) => {
                     <View
                         style={styles.conteinerChip}>
                         {
-                            Object.keys(element.preferences).map(e => {
-                                if (element.preferences[e] === true) {
+                            Object.keys(element.intereses).map(e => {
+                                if (element.intereses[e] === true) {
                                     return <Chip key={Math.random().toString() + 'C1H1p'} style={styles.chip}>{e}</Chip>
                                 }
                             }

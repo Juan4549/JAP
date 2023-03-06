@@ -59,16 +59,16 @@ export const useMatch = () => {
             const user1 = {
                 uid: userMacht.uid,
                 chatUid: userMacht.uid + u.user.uid,
-                names: userMacht.names,
-                surnames: userMacht.surnames,
-                urlFoto: userMacht.urlFoto
+                nombres: userMacht.nombres,
+                apellidos: userMacht.apellidos,
+                foto: userMacht.foto
             }
             const user2 = {
                 uid: u.user.uid,
                 chatUid: userMacht.uid + u.user.uid,
-                names: u.user.names,
-                surnames: u.user.surnames,
-                urlFoto: u.user.urlFoto
+                nombres: u.user.nombres,
+                apellidos: u.user.apellidos,
+                foto: u.user.foto
             }
             console.log(user1)
             console.log(user2)
