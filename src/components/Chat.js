@@ -64,7 +64,7 @@ const ChatComponent = ({ route }) => {
             }}
             user={{
                 _id: u.user.uid,
-                avatar: u.user.urlFoto
+                avatar: u.user.foto
             }}
         />
     )
