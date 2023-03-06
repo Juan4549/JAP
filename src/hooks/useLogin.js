@@ -45,7 +45,7 @@ export const useLogin = (data) => {
                 console.log(user)
                 console.log(data)
                 console.log("Obtencion de matchs")
-                var matchs = await getMatch(data.genero)
+                var matchs = await getMatch(data.genero,data)
                 console.log("Guardado de datos")
                 setU({ ...u, auth: user, user: data, matchs: matchs });
                 //console.log(u);

@@ -90,7 +90,9 @@ export const useRegister = (data) => {
                     description: form.description,
                     urlFoto: urlFoto,
                     uid: user.uid,
-                    chats:[]
+                    chats:[],
+                    notLike:[],
+                    likes:[]
                 })
                     .then(() => {
                         console.log("Datos guardados!");

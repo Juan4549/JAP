@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Card, Chip, Divider, Text } from "react-native-paper";
 import { ScrollView } from "react-native-web";
 import { AuthContext } from "../context/auth";
+import firebase from "../database/firebase";
 import { useMatch } from "../hooks/useMatch";
 
-const MatchComponent = () => {
+const MatchComponent = ({ route }) => {
     const [u, setU] = useContext(AuthContext)
-    const { getMatch, setMatch, getChats } = useMatch();
-    const List = u.matchs.map(element =>
+    const [contar, setContar] = useState(0)
+    const { getMatch, setMatch, getChats, getNotMatch,updateMatch } = useMatch();
+    const List = u.matchs?.map(element =>
         <View
             style={styles.conteinerCardStyle}
             key={element.uid}>
@@ -46,11 +49,17 @@ const MatchComponent = () => {
                     />
                 </Card.Content>
                 <Card.Actions>
-                    <Button>No, Gracias</Button>
+                    <Button
+                        onPress={() => {
+                            getNotMatch(element)
+                            updateMatch(u.user)
+                            setContar(contar + 1)
+                        }}>No, Gracias</Button>
                     <Button
                         onPress={() => {
                             setMatch(element)
                             getChats()
+                            setContar(contar - 1)
                         }}
                     >Me Gusta</Button>
                 </Card.Actions>
@@ -60,6 +69,7 @@ const MatchComponent = () => {
     return (
         <View
             style={styles.conteiner}>
+            {console.log(u.matchs)}
             <ScrollView>
 
                 {List}
