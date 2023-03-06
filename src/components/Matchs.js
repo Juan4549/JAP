@@ -56,7 +56,7 @@ const MatchComponent = ({ route }) => {
                         onPress={() => {
                             setMatch(element)
                             getChats()
-                            route.props.navigation.navigate('Chats')
+                            //route.props.navigation.navigate('Chats')
                         }}
                     >Me Gusta ❤</Button>
                 </Card.Actions>
