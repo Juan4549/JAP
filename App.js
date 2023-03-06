@@ -25,7 +25,7 @@ function AuthStack() {
 function ChatStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomePage} />
+      <Stack.Screen name="Conoce a tu alma gemela 😉" component={HomePage} />
       <Stack.Screen name="Match" component={MatchComponent} />
       <Stack.Screen name="Chats" component={ChatsComponent} />
       <Stack.Screen name="Chat" component={ChatComponent} />

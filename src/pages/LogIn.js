@@ -29,8 +29,12 @@ export default function LogInPage(props) {
             <View style={styles.container}>
                 {/* Nombre logo */}
                 <Text
-                    style={styles.text}
+                    style={styles.textLogin}
                 >JAP
+                </Text>
+                <Text
+                    style={styles.text}
+                >Navega, chatea y conoce 💑
                 </Text>
                 {/* TextInput email */}
                 <TextInput

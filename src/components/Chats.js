@@ -54,8 +54,9 @@ export const styles = StyleSheet.create({
         borderWidth: 0.7
     },
     textTitulo: {
+        color: '#746AA9',
+        fontFamily: 'fantasy',
         fontSize: 20,
-        fontWeight: 'bold',
     },
     textSubTitulo: {
         fontSize: 15,

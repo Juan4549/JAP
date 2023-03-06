@@ -31,7 +31,7 @@ const MatchComponent = ({ route }) => {
                         style={styles.divider}
                     />
                     <Text
-                        style={styles.text}
+                        style={styles.textTitulo}
                     >Le gusta: </Text>
                     <View
                         style={styles.conteinerChip}>
@@ -54,14 +54,14 @@ const MatchComponent = ({ route }) => {
                             getNotMatch(element)
                             updateMatch(u.user)
                             setContar(contar + 1)
-                        }}>No, Gracias</Button>
+                        }}>No, Gracias 👎</Button>
                     <Button
                         onPress={() => {
                             setMatch(element)
                             getChats()
                             setContar(contar - 1)
                         }}
-                    >Me Gusta</Button>
+                    >Me Gusta ❤</Button>
                 </Card.Actions>
             </Card >
         </View>
@@ -95,8 +95,9 @@ export const styles = StyleSheet.create({
         borderWidth: 0.7
     },
     textTitulo: {
+        color: '#746AA9',
+        fontFamily: 'fantasy',
         fontSize: 20,
-        fontWeight: 'bold',
     },
     textSubTitulo: {
         fontSize: 15,
