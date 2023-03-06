@@ -51,12 +51,14 @@ const MatchComponent = ({ route }) => {
                             getNotMatch(element)
                             updateMatch(u.user)
                             route.props.navigation.navigate('Conoce a tu alma gemela 😉')
+                            alert("Le diste me no gusta a "+ element.names)
                         }}>No, Gracias 👎</Button>
                     <Button
                         onPress={() => {
                             setMatch(element)
                             getChats()
-                            route.props.navigation.navigate('Chats')
+                            alert("Le diste me gusta a "+ element.names)
+                            //route.props.navigation.navigate('Chats')
                         }}
                     >Me Gusta ❤</Button>
                 </Card.Actions>
